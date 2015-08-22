@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.1 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <script src="chargeplanner.js" type="text/javascript"></script>
+</head>
+
+<body>
+Finn starttidspunkt for lading <br/>
+  <label for="soc-current">Current SOC</label>
+	<input type="text" id="soc-current"/>
+  <label for="charge-time">Charging time</label>
+	<input type="text" id="charge-time"/>
+	<button type="button" value="Calculate" title="Calculate starte time" onclick="document.getElementById('charge-time').value = startCharge(document.getElementById('soc-current').value, 80, '10:00', 3, '%'); ">
+    Calculate
+  </button>
+</body>
+</html>
