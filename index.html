@@ -5,6 +5,7 @@
 <html>
 <head>
   <script src="chargeplanner.js" type="text/javascript"></script>
+  <script type="text/javascript" src="node_modules/moment/moment.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,10 @@ Finn starttidspunkt for lading <br/>
   <input type="text" id="soc-target"/>
   <label for="charge-time">Charging time</label>
 	<input type="text" id="charge-time"/>
+  <label for="charge-time">Start to charge</label>
+  <input type="text" id="start-time"/>
+  <label for="target-time">Charging finished</label>
+  <input type="text" id="target-time"/>
 	<button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
     Calculate
   </button>
@@ -33,7 +38,15 @@ Finn starttidspunkt for lading <br/>
     var socCurrent = document.getElementById('soc-current').value;
     var socTarget = document.getElementById('soc-target').value;
 
-    document.getElementById('charge-time').value = chargeTime(document.getElementById('soc-current').value, socTarget, power, unit);
+    var hours = chargeTime(document.getElementById('soc-current').value, socTarget, power, unit);
+    var hoursDuration = moment.duration(hours, 'hours');
+    document.getElementById('charge-time').value = hoursDuration.humanize();
+
+    var targetTime = moment().startOf('day').add(1, 'days');
+
+    targetTime = targetTime.add(document.getElementById("target-time").value, 'hours');
+    var startTime = targetTime.subtract(hoursDuration);
+    document.getElementById('start-time').value = startTime.format("DD.MM.YYYY HH:mm");
   }
 </script>
 </body>
