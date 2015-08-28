@@ -9,8 +9,12 @@
 </head>
 
 <body>
-Finn starttidspunkt for lading <br/>
-  <label for="power">Charging power</label>
+<h1>Find start time for charging to finish in time for your trip.</h1>
+In order to minimize the time the battery has a high SOC, the finding the time to start charging is essential.<br>
+Having high SOC for longer periods of time is not recommended for good battery health.<br/>
+This calculation is simplified and assumes linear charging. More powerful chargers will not be fully utilized when the battery is cold or when SOC is high.
+  <fieldset>
+  <label for="power">Charging power (kW)</label>
   <input type="text" id="power"/>
   <label for="unit">Unit</label>
   <select id="unit">
@@ -21,12 +25,17 @@ Finn starttidspunkt for lading <br/>
 	<input type="text" id="soc-current"/>
   <label for="soc-target">Target SOC</label>
   <input type="text" id="soc-target"/>
-  <label for="charge-time">Charging time</label>
-	<input type="text" id="charge-time"/>
-  <label for="charge-time">Start to charge</label>
-  <input type="text" id="start-time"/>
   <label for="target-time">Charging finished</label>
   <input type="text" id="target-time"/>
+  </fieldset>
+  <br>
+  <fieldset>
+  <label for="charge-time">Charging time</label>
+	<input type="text" id="charge-time" disabled="disabled"/>
+  <label for="charge-time">Start to charge</label>
+  <input type="text" id="start-time" disabled="disabled"/>
+  </fieldset>
+  <br>
 	<button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
     Calculate
   </button>
@@ -44,7 +53,7 @@ Finn starttidspunkt for lading <br/>
 
     var targetTime = moment().startOf('day').add(1, 'days');
 
-    targetTime = targetTime.add(document.getElementById("target-time").value, 'hours');
+    targetTime = targetTime.add(moment.duration(document.getElementById("target-time").value));
     var startTime = targetTime.subtract(hoursDuration);
     document.getElementById('start-time').value = startTime.format("DD.MM.YYYY HH:mm");
   }
