@@ -9,12 +9,32 @@
 
 <body>
 Finn starttidspunkt for lading <br/>
+  <label for="power">Charging power</label>
+  <input type="text" id="power"/>
+  <label for="unit">Unit</label>
+  <select id="unit">
+    <option value="%">%</option>
+    <option value="tkm">tkm</option>
+  </select>
   <label for="soc-current">Current SOC</label>
 	<input type="text" id="soc-current"/>
+  <label for="soc-target">Target SOC</label>
+  <input type="text" id="soc-target"/>
   <label for="charge-time">Charging time</label>
 	<input type="text" id="charge-time"/>
-	<button type="button" value="Calculate" title="Calculate starte time" onclick="document.getElementById('charge-time').value = startCharge(document.getElementById('soc-current').value, 80, '10:00', 3, '%'); ">
+	<button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
     Calculate
   </button>
+
+<script type="text/javascript">
+  function startCharge() {
+    var power = document.getElementById('power').value;
+    var unit = document.getElementById('unit').value;
+    var socCurrent = document.getElementById('soc-current').value;
+    var socTarget = document.getElementById('soc-target').value;
+
+    document.getElementById('charge-time').value = chargeTime(document.getElementById('soc-current').value, socTarget, power, unit);
+  }
+</script>
 </body>
 </html>

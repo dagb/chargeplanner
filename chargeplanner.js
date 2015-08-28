@@ -1,5 +1,5 @@
 
-function startCharge(currentSOC, chargeLimit, targetTime, power, unit) {
+function chargeTime(currentSOC, chargeLimit, power, unit) {
 	currentSOCkWh = 0;
 	targetSOCKwH = 0;
 	if (unit == "%") {
