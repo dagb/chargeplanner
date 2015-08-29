@@ -17,6 +17,7 @@ In order to minimize the time the battery has a high SOC, the finding the time t
 Having high SOC for longer periods of time is not recommended for good battery health.<br/>
 This calculation is simplified and assumes linear charging at 90% efficiency. <br>
 When the battery is cold, some ramp up time should be added according to outdoor/garage temperature. Charging power will taper off at high SOC.
+    See also <a target="_blank" href="http://www.teslamotors.com/no_NO/models-charging">Tesla charging options</a> for info on types of chargers and power.
     </div>
   <fieldset>
     <label for="battery">Battery</label>
@@ -38,7 +39,7 @@ When the battery is cold, some ramp up time should be added according to outdoor
   <label for="soc-target">Target SOC</label>
   <input type="text" id="soc-target"/>
   <label for="target-time">Charging finished</label>
-  <input type="text" id="target-time"/>
+  <input type="text" id="target-time" value="07:00"/>
   </fieldset>
   <br>
   <fieldset>
@@ -52,7 +53,7 @@ When the battery is cold, some ramp up time should be added according to outdoor
     Calculate
   </button>
   <div class="jumbotron">
-      Values used for computing required charging times. Please notify me if these need t be adjusted.
+      Values used for computing required charging times. Please notify me if these need to be adjusted.
       <table>
         <thead>
         <th width="150px">Battery</th>
@@ -61,22 +62,22 @@ When the battery is cold, some ramp up time should be added according to outdoor
         </thead>
         <tr>
           <td>60</td>
-          <td>55</td>
+          <td>51.5</td>
           <td>250</td>
         </tr>
         <tr>
           <td>70</td>
-          <td>65</td>
+          <td>61</td>
           <td>320</td>
         </tr>
         <tr>
           <td>85</td>
-          <td>80</td>
+          <td>75</td>
           <td>410</td>
         </tr>
         <tr>
           <td>90</td>
-          <td>85</td>
+          <td>79.6</td>
           <td>465</td>
         </tr>
       </table>
