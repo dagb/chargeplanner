@@ -16,8 +16,7 @@
 In order to minimize the time the battery has a high SOC, the finding the time to start charging is essential.<br>
 Having high SOC for longer periods of time is not recommended for good battery health.<br/>
 This calculation is simplified and assumes linear charging at 90% efficiency. <br>
-More powerful chargers will not be fully utilized when the battery is cold or when SOC is high.
-When the battery is cold, some rampup time should be added according to outdoor/garage temperature.
+When the battery is cold, some ramp up time should be added according to outdoor/garage temperature. Charging power will taper off at high SOC.
     </div>
   <fieldset>
     <label for="battery">Battery</label>
@@ -52,10 +51,40 @@ When the battery is cold, some rampup time should be added according to outdoor/
 	<button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
     Calculate
   </button>
-
+  <div class="jumbotron">
+      Values used for computing required charging times. Please notify me if these need t be adjusted.
+      <table>
+        <thead>
+        <th width="150px">Battery</th>
+        <th width="150px">Available (kWh)</th>
+        <th width="150px">Available (tkm)</th>
+        </thead>
+        <tr>
+          <td>60</td>
+          <td>55</td>
+          <td>250</td>
+        </tr>
+        <tr>
+          <td>70</td>
+          <td>65</td>
+          <td>320</td>
+        </tr>
+        <tr>
+          <td>85</td>
+          <td>80</td>
+          <td>410</td>
+        </tr>
+        <tr>
+          <td>90</td>
+          <td>85</td>
+          <td>465</td>
+        </tr>
+      </table>
+  </div>
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">Laget av <a href="https://twitter.com/dagbnor">@dagbnor</a>. Min Tesla Referral link <a target="_blank" href="http://ts.la/dag8694">http://ts.la/dag8694</a></p>
+    <p class="text-muted">Laget av <a target="_blank" href="https://twitter.com/dagbnor">@dagbnor</a>. Min Tesla Referral link <a target="_blank" href="http://ts.la/dag8694">http://ts.la/dag8694</a></p>
+    <p>Time is computed using <a href="http://momentjs.com">Moment.js</a></p>
   </div>
 </footer>
 
