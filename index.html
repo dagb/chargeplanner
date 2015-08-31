@@ -12,108 +12,133 @@
 <body>
 <div class="container">
   <div class="jumbotron">
-<h3>Find start time for charging your Tesla Model S</h3>
-In order to minimize the time the battery has a high SOC, the finding the time to start charging is essential.<br>
-Having high SOC for longer periods of time is not recommended for good battery health.<br/>
-This calculation is simplified and assumes linear charging at 90% efficiency. <br>
-When the battery is cold, some ramp up time should be added according to outdoor/garage temperature. Charging power will taper off at high SOC.
-    See also <a target="_blank" href="http://www.teslamotors.com/no_NO/models-charging">Tesla charging options</a> for info on types of chargers and power.
+    <h3>Find start time for charging your Tesla Model S</h3>
+    In order to minimize the time the battery has a high SOC, the finding the time to start charging is essential.<br>
+    Having high SOC for longer periods of time is not recommended for good battery health.<br/>
+    This calculation is simplified and assumes linear charging at 90% efficiency. <br>
+    When the battery is cold, some ramp up time should be added according to outdoor/garage temperature. Charging power
+    will taper off at high SOC.
+    See also <a target="_blank" href="http://www.teslamotors.com/no_NO/models-charging">Tesla charging options</a> for
+    info on types of chargers and power.
+  </div>
+
+    <div>
+      <div class="control-group">
+        <div class="controls">
+          <label for="battery">Battery</label>
+          <select id="battery">
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="85">85</option>
+            <option value="90">90</option>
+          </select>
+        </div>
+        <div class="controls">
+          <label for="power">Charging power (kW)</label>
+          <input type="text" id="power"/>
+        </div>
+        <div class="controls">
+          <label for="unit">Unit</label>
+          <select id="unit">
+            <option value="%">%</option>
+            <option value="tkm">tkm</option>
+          </select>
+        </div>
+        <div class="controls">
+          <label for="soc-current">Current SOC</label>
+          <input type="text" id="soc-current"/>
+        </div>
+        <div class="controls">
+          <label for="soc-target">Target SOC</label>
+
+          <input type="text" id="soc-target"/>
+
+          <div class="controls">
+            <div class="controls bootstrap-timepicker">
+              <label for="target-time">Charging finished</label>
+              <input type="text" class="datetime" id="target-time" value="07:00"/> <i class="icon-time"></i>
+            </div>
+          </div>
+          </fieldset>
+          <br>
+          <fieldset>
+            <label for="charge-time">Charging time</label>
+            <input type="text" id="charge-time" disabled="disabled"/>
+            <label for="charge-time">Start to charge</label>
+            <input type="text" id="start-time" disabled="disabled"/>
+          </fieldset>
+          <br>
+          <button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
+            Calculate
+          </button>
+          </form>
+          <div class="jumbotron">
+            Values used for computing required charging times. Please notify me if these need to be adjusted.
+            <table>
+              <thead>
+              <th width="150px">Battery</th>
+              <th width="150px">Available (kWh)</th>
+              <th width="150px">Available (tkm)</th>
+              </thead>
+              <tr>
+                <td>60</td>
+                <td>51.5</td>
+                <td>250</td>
+              </tr>
+              <tr>
+                <td>70</td>
+                <td>61</td>
+                <td>320</td>
+              </tr>
+              <tr>
+                <td>85</td>
+                <td>75</td>
+                <td>410</td>
+              </tr>
+              <tr>
+                <td>90</td>
+                <td>79.6</td>
+                <td>465</td>
+              </tr>
+            </table>
+          </div>
+          <footer class="footer">
+            <div class="container">
+              <p class="text-muted">Laget av <a target="_blank" href="https://twitter.com/dagbnor">@dagbnor</a>. Min
+                Tesla Referral link <a target="_blank" href="http://ts.la/dag8694">http://ts.la/dag8694</a></p>
+
+              <p>Time is computed using <a href="http://momentjs.com">Moment.js</a></p>
+            </div>
+          </footer>
+
+        </div>
+      </div>
     </div>
-  <fieldset>
-    <label for="battery">Battery</label>
-    <select id="battery">
-      <option value="60">60</option>
-      <option value="70">70</option>
-      <option value="85">85</option>
-      <option value="90">90</option>
-    </select>
-  <label for="power">Charging power (kW)</label>
-  <input type="text" id="power"/>
-  <label for="unit">Unit</label>
-  <select id="unit">
-    <option value="%">%</option>
-    <option value="tkm">tkm</option>
-  </select>
-  <label for="soc-current">Current SOC</label>
-	<input type="text" id="soc-current"/>
-  <label for="soc-target">Target SOC</label>
-  <input type="text" id="soc-target"/>
-  <label for="target-time">Charging finished</label>
-  <input type="text" id="target-time" value="07:00"/>
-  </fieldset>
-  <br>
-  <fieldset>
-  <label for="charge-time">Charging time</label>
-	<input type="text" id="charge-time" disabled="disabled"/>
-  <label for="charge-time">Start to charge</label>
-  <input type="text" id="start-time" disabled="disabled"/>
-  </fieldset>
-  <br>
-	<button type="button" value="Calculate" title="Calculate starte time" onclick="startCharge(); ">
-    Calculate
-  </button>
-  <div class="jumbotron">
-      Values used for computing required charging times. Please notify me if these need to be adjusted.
-      <table>
-        <thead>
-        <th width="150px">Battery</th>
-        <th width="150px">Available (kWh)</th>
-        <th width="150px">Available (tkm)</th>
-        </thead>
-        <tr>
-          <td>60</td>
-          <td>51.5</td>
-          <td>250</td>
-        </tr>
-        <tr>
-          <td>70</td>
-          <td>61</td>
-          <td>320</td>
-        </tr>
-        <tr>
-          <td>85</td>
-          <td>75</td>
-          <td>410</td>
-        </tr>
-        <tr>
-          <td>90</td>
-          <td>79.6</td>
-          <td>465</td>
-        </tr>
-      </table>
   </div>
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">Laget av <a target="_blank" href="https://twitter.com/dagbnor">@dagbnor</a>. Min Tesla Referral link <a target="_blank" href="http://ts.la/dag8694">http://ts.la/dag8694</a></p>
-    <p>Time is computed using <a href="http://momentjs.com">Moment.js</a></p>
-  </div>
-</footer>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
 
-</div>
+        <script type="text/javascript">
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+          function startCharge() {
+            var power = document.getElementById('power').value;
+            var unit = document.getElementById('unit').value;
+            var socCurrent = document.getElementById('soc-current').value;
+            var socTarget = document.getElementById('soc-target').value;
+            var battery = document.getElementById("battery").value;
 
-<script type="text/javascript">
-  function startCharge() {
-    var power = document.getElementById('power').value;
-    var unit = document.getElementById('unit').value;
-    var socCurrent = document.getElementById('soc-current').value;
-    var socTarget = document.getElementById('soc-target').value;
-    var battery = document.getElementById("battery").value;
+            var hours = chargeTime(socCurrent, socTarget, power, unit, battery);
+            var hoursDuration = moment.duration(hours, 'hours');
+            document.getElementById('charge-time').value = hoursDuration.humanize();
 
-    var hours = chargeTime(document.getElementById('soc-current').value, socTarget, power, unit, battery);
-    var hoursDuration = moment.duration(hours, 'hours');
-    document.getElementById('charge-time').value = hoursDuration.humanize();
+            var targetTime = moment().startOf('day').add(1, 'days');
 
-    var targetTime = moment().startOf('day').add(1, 'days');
-
-    targetTime = targetTime.add(moment.duration(document.getElementById("target-time").value));
-    var startTime = targetTime.subtract(hoursDuration);
-    document.getElementById('start-time').value = startTime.format("DD.MM.YYYY HH:mm");
-  }
-</script>
+            targetTime = targetTime.add(moment.duration(document.getElementById("target-time").value));
+            var startTime = targetTime.subtract(hoursDuration);
+            document.getElementById('start-time').value = startTime.format("DD.MM.YYYY HH:mm");
+          }
+        </script>
 </body>
 </html>
